@@ -24,25 +24,24 @@ export const newTodos = (state, action) => {
         todos: [...state.todos, newTodo]
       }
     case "TOGGLE_TODO":
-      // return state.map(todo => {
-      //   if (todo.id === action.id) {
-      //     return { ...todo, completed: true }
-      //   } else {
-      //     return todo
-      //   }
-      // })
-      // return {
-      //   ...state,
-      //   completed: !state.completed
-      // }
+      return {
+        ...state,
+        todos: state.todos.map(todo => {
+          if (action.payload.id === todo.id) {
+            return {
+              ...todo,
+              completed: !todo.completed
+            }
+          } else {
+            return todo
+          }
+        })
+      }
     case "DELETE_TODO":
-      // return [
-      //   ...state,
-      //   {
-      //     item: "",
-      //     completed: !state.completed
-      //   }
-      // ]
+      return {
+        ...state,
+        todos: state.todos.filter(todo => !todo.completed)
+      }
     default:
       return state
   }

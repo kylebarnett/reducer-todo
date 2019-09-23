@@ -8,11 +8,10 @@ export default function Todo(props) {
     dispatch({ type: 'TOGGLE-TODO', id: todo.id })
   }
   return (
-    <div>
+    <div className={`todo${props.todo.completed ? " complete" : ""}`} onClick={() => {
+      props.toggleTodo(props.todo)
+    }}>
       {props.todo.item}
-      <input
-        type="checkbox"
-      />
     </div>
   )
 }

@@ -20,3 +20,12 @@
 .App-link {
   color: #09d3ac;
 }
+
+.todo {
+  color: pink
+}
+
+.todo.complete {
+  color: green;
+  text-decoration: line-through;
+}

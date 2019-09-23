@@ -11,11 +11,20 @@ export default function TodoForm() {
     setInput(e.target.value)
   }
 
+  const toggleTodo = value => {
+    return dispatch({ type: "TOGGLE_TODO", payload: value })
+  }
+
+  const clearTodos = e => {
+    e.preventDefault()
+    dispatch({ type: "DELETE_TODO" })
+  }
+
   return (
     <div>
       <div>
         {state.todos.map(todo => (
-          <Todo todo={todo} key={todo.id} />
+          <Todo todo={todo} key={todo.id} toggleTodo={toggleTodo} />
         ))}
       </div>
       <form onSubmit={e => {
@@ -29,8 +38,8 @@ export default function TodoForm() {
           onChange={handleChange}
         />
       </form>
-      <button>Add Todo</button>
-      <button onClick={() => dispatch({ type: "DELETE_TODO" })}>Remove Todo</button>
+      <button type="submit">Add Todo</button>
+      <button onClick={clearTodos}>Remove Todo</button>
     </div>
   )
 }
