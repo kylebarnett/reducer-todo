@@ -14,18 +14,23 @@ export default function TodoForm() {
   return (
     <div>
       <div>
-        {state.map(todo => (
+        {state.todos.map(todo => (
           <Todo todo={todo} key={todo.id} />
         ))}
       </div>
-      <form>
+      <form onSubmit={e => {
+        e.preventDefault()
+        dispatch({ type: "ADD_TODO", payload: input })
+        setInput("")
+      }}>
         <input
           type='text'
           value={input}
           onChange={handleChange}
         />
       </form>
-      <button onClick={() => dispatch({ type: "ADD_TODO", payload: input })}>Add Todo</button>
+      <button>Add Todo</button>
+      <button onClick={() => dispatch({ type: "DELETE_TODO" })}>Remove Todo</button>
     </div>
   )
 }
